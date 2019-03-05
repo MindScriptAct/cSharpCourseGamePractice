@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 
 namespace ConsoleGame.Units
 {
-    class Unit
+    abstract class Unit
     {
         protected int X;
         protected int Y;
-        private string Name;
+        protected string Name;
 
-        public Unit(int x, int y, string name)
+        public Unit(int X, int Y, string Name)
         {
-            X = x;
-            Y = y;
-            Name = name;
+            this.X = X;
+            this.Y = Y;
+            this.Name = Name;
         }
-
         public void PrintInfo()
         {
-            Console.WriteLine($" Unit {Name} is at {X}x{Y}");
+            Console.WriteLine($"{Name} is at {X} : {Y}");
         }
     }
 }

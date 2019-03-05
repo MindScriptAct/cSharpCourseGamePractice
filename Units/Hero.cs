@@ -8,22 +8,32 @@ namespace ConsoleGame.Units
 {
     class Hero : Unit
     {
-        public Hero(int x, int y, string name) : base(x, y, name)
+        public Hero(int X, int Y, string Name) : base(X, Y, Name)
         {
         }
-
         public void MoveRight()
         {
             X++;
         }
-
         public void MoveLeft()
         {
             X--;
         }
-
-        public int GetX() {
+        public void MoveUp()
+        {
+            Y--;
+        }
+        public void MoveDown()
+        {
+            Y++;
+        }
+        public int GetX()
+        {
             return X;
+        }
+        public int GetY()
+        {
+            return Y;
         }
     }
 }

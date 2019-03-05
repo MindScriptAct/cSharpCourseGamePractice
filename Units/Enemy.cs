@@ -10,19 +10,40 @@ namespace ConsoleGame.Units
     {
         private int _id;
 
-        public Enemy(int id, int x, int y, string name) : base(x, y, name)
+        public Enemy(int id, int X, int Y, string Name) : base(X, Y, Name)
         {
-            this._id = id;
+            _id = id;
         }
-
         public void MoveDown()
         {
             Y++;
         }
-
+        public void MoveUp()
+        {
+            Y--;
+        }
+        public int GetEnemyY()
+        {
+            return Y;
+        }
         public int GetId()
         {
             return _id;
+        }
+
+        public int GetEnemyX()
+        {
+            return X;
+        }
+
+        public void MoveLeft()
+        {
+            X--;
+        }
+
+       public void MoveRight()
+        {
+            X++;
         }
     }
 }

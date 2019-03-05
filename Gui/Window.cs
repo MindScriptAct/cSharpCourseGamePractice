@@ -8,21 +8,24 @@ namespace ConsoleGame.Gui
 {
     class Window : GuiObject
     {
-        private Frame _border;
-
-        public Window(int x, int y, int width, int height, char borderChar) : base(x, y, width, height)
+        private Frame _frame;
+        private TextLine _windowTitle;
+        public Window(int x, int y, int width, int height, char frameChar, string titleText = "") : base(x, y, width, height)
         {
-            X = x;
-            Y = y;
-            Width = width;
-            Height = height;
+            _frame = new Frame(x, y, width, height, frameChar);
+            if (titleText != "")
+            {
+                _windowTitle = new TextLine(x + 2, y + 1, width - 4, titleText);
+            }
 
-            _border = new Frame(x, y, width, height, borderChar);
         }
-
         public override void Render()
         {
-            _border.Render();
+            _frame.Render();
+
+            _windowTitle?.Render();
+
+
         }
     }
 }

@@ -14,17 +14,10 @@ namespace ConsoleGame
         {
 
             Console.CursorVisible = false;
-
-            GameWindow gameWindow = new GameWindow();
-            gameWindow.Render();
-
-            CreditWindow creditWindow = new CreditWindow();
-            creditWindow.Render();
+            GuiController guiController = new GuiController();
+            guiController.ShowMenu();
 
             Console.ReadKey();
-
-            //GameController myGame = new GameController();
-            //myGame.StartGame();
         }
     }
 }

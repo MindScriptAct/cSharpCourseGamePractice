@@ -9,40 +9,52 @@ namespace ConsoleGame.Game
 {
     class GameScreen
     {
+        Random rnd = new Random();
+        private Hero _hero;
+
         private int _width;
         private int _height;
-
-        private Hero _hero;
         private List<Enemy> _enemies = new List<Enemy>();
 
-        public GameScreen(int width, int height)
+        public GameScreen(int widht, int height)
         {
-            _width = width;
+            _width = widht;
             _height = height;
         }
-
         public void SetHero(Hero hero)
         {
-            this._hero = hero;
+            _hero = hero;
         }
-
-
-        public void MoveHeroLeft()
-        {
-            if (_hero.GetX() > 0)
-            {
-                _hero.MoveLeft();
-            }
-        }
-
         public void MoveHeroRight()
         {
             if (_hero.GetX() < _width)
             {
                 _hero.MoveRight();
             }
-        }
 
+        }
+        public void MoveHeroLeft()
+        {
+            if (_hero.GetX() > 0)
+            {
+                _hero.MoveLeft();
+            }
+
+        }
+        public void MoveHeroUp()
+        {
+            if (_hero.GetY() > 0)
+            {
+                _hero.MoveUp();
+            }
+        }
+        public void MoveHeroDown()
+        {
+            if (_hero.GetY() < _height)
+            {
+                _hero.MoveDown();
+            }
+        }
         public void AddEnemy(Enemy enemy)
         {
             _enemies.Add(enemy);
@@ -50,13 +62,39 @@ namespace ConsoleGame.Game
 
         public void MoveAllEnemiesDown()
         {
+
             foreach (Enemy enemy in _enemies)
             {
-                enemy.MoveDown();
+                if (enemy.GetEnemyY() < _height)
+                {
+                    enemy.MoveDown();
+                }
+
+            }
+
+        }
+        public void MoveAllEnemiesUp()
+        {
+            foreach (Enemy enemy in _enemies)
+            {
+                if (enemy.GetEnemyY() > 0)
+                {
+                    enemy.MoveUp();
+                }
+
             }
         }
-
-        public Enemy GetEnemyById(int id)
+        public void MoveAllEnemiesLeft()
+        {
+            foreach(Enemy enemy in _enemies)
+            {
+                if(enemy.GetEnemyX() > 0)
+                {
+                    enemy.MoveLeft();
+                }
+            }
+        }
+        public Enemy GetEnemyByID(int id)
         {
             foreach (Enemy enemy in _enemies)
             {
@@ -65,23 +103,29 @@ namespace ConsoleGame.Game
                     return enemy;
                 }
             }
-
             return null;
+        }
+
+        public void MoveAllEnemiesRight()
+        {
+            foreach (Enemy enemy in _enemies)
+            {
+                if(enemy.GetEnemyX() < _width)
+                {
+                    enemy.MoveRight();
+                }
+            }
         }
 
         public void Render()
         {
+            Console.WriteLine("Don't step on enemy!");
             _hero.PrintInfo();
+            Console.WriteLine();
             foreach (Enemy enemy in _enemies)
             {
                 enemy.PrintInfo();
             }
         }
-
-
-
-
-
-
     }
 }

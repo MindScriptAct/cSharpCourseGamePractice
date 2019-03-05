@@ -8,46 +8,46 @@ namespace ConsoleGame.Gui
 {
     class Button : GuiObject
     {
-        public bool IsActive { get; private set; } = false;
+        private Frame _buttonFrame;
+        private TextLine _label;
+        private bool _isActive;
+        private int _buttonId;
 
-        public string Label {
-            get { return _textLine.Label; }
-            set { _textLine.Label = value; }
-        }
-
-        private string _label =  "";
-
-        private Frame _notActiveFrame;
-        private Frame _activeFrame;
-
-        private TextLine _textLine;
-
-
-
-        public Button(int x, int y, int width, int height, string buttonText) : base(x, y, width, height)
+        public Button(int x, int y, int width, int height, string label, int buttonId) : base(x, y, width, height)
         {
-            _notActiveFrame = new Frame(x, y, width, height, '+');
-            _activeFrame = new Frame(x, y, width, height, '#');
-
-            _textLine = new TextLine(x + 1, y + 1 + ((height - 2) / 2), width - 2, buttonText);
+            _buttonFrame = new Frame(x, y, width, height, '*');
+            _label = new TextLine(x + 1, y + Height / 2, Width - 2, label);
+            _buttonId = buttonId;
+            SetNotActive();
         }
 
         public override void Render()
         {
-            if (IsActive)
-            {
-                _activeFrame.Render();
-            } else
-            {
-                _notActiveFrame.Render();
-            }
-
-            _textLine.Render();
+            _buttonFrame.Render();
+            _label.Render();
         }
-
         public void SetActive()
         {
-            IsActive = true;
+            _buttonFrame.SetRenderChar('x');
+            _isActive = true;
+        }
+        public void SetNotActive()
+        {
+            _buttonFrame.SetRenderChar('o');
+            _isActive = false;
+        }
+        public bool GetIsActive()
+        {
+            return _isActive;
+        }
+        public void PrintButton()
+        {
+            _buttonFrame.Render();
+            _label.Render();
+        }
+        public int ButtonId()
+        {
+            return _buttonId;
         }
     }
 }
