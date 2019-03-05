@@ -4,73 +4,80 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleGame.Units;
-
+using ConsoleGame.Gui;
 namespace ConsoleGame.Game
 {
     class GameController
     {
 
-        private GameScreen myGame;
-
-        public void StartGame()
+        private GameScreen myGame = new GameScreen(10, 30);
+        public GameController()
         {
 
-            // init game
-            InitGame();
-
-            // render loop
-            StartGameLoop();
         }
-
-        private void InitGame()
+        public void InitGame()
         {
-            myGame = new GameScreen(30, 20);
-
-            // fill game with game data.
-            myGame.SetHero(new Hero(5, 5, "HERO"));
+            Console.WriteLine("---Console Game---");
+            Console.Write("Write Hero name: ");
             Random rnd = new Random();
-            int enemyCount = 0;
+            string enemyName = "Mob";
+            int enemyId = 0;
+            string inputName = Console.ReadLine();
+            myGame.SetHero(new Hero(1, 1, inputName));
             for (int i = 0; i < 10; i++)
             {
-                myGame.AddEnemy(new Enemy(enemyCount, rnd.Next(0, 10), rnd.Next(0, 10), "enemy" + enemyCount));
-                enemyCount++;
+                myGame.AddEnemy(new Enemy(enemyId, rnd.Next(0, 10), rnd.Next(0, 10), enemyName + " " + enemyId));
+                enemyId++;
+
             }
         }
-
-
-        private void StartGameLoop()
+        public void StartGameLoop()
         {
-            bool needToRender = true;
 
+            bool needToRender = false;
             do
             {
-                // isvalom ekrana
                 Console.Clear();
-
+                myGame.Render();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo pressedChar = Console.ReadKey(true);
-                    int hashCode = pressedChar.Key.GetHashCode();
 
                     switch (pressedChar.Key)
                     {
                         case ConsoleKey.Escape:
-                            needToRender = false;
+                            needToRender = true;
                             break;
                         case ConsoleKey.RightArrow:
                             myGame.MoveHeroRight();
+                            myGame.MoveAllEnemiesDown();
+                            needToRender = false;
                             break;
                         case ConsoleKey.LeftArrow:
                             myGame.MoveHeroLeft();
+                            myGame.MoveAllEnemiesUp();
+                            needToRender = false;
+                            break;
+                        case ConsoleKey.UpArrow:
+                            myGame.MoveHeroUp();
+                            needToRender = false;
+                            break;
+                        case ConsoleKey.DownArrow:
+                            myGame.MoveHeroDown();
+                            needToRender = false;
                             break;
                     }
                 }
-
-                myGame.Render();
-
-                // padarom pause. (parodom ekrana).
                 System.Threading.Thread.Sleep(250);
-            } while (needToRender);
+            } while (needToRender == false);
+            Console.Clear();
+            GuiController gui = new GuiController();
+            gui.ShowMenu();
+        }
+        public void StartGame()
+        {
+            InitGame();
+            StartGameLoop();
         }
     }
 }

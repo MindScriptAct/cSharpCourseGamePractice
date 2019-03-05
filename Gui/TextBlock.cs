@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace ConsoleGame.Gui
 {
-    sealed class TextBlock : GuiObject
+   sealed class TextBlock : GuiObject
     {
         private List<TextLine> _textBlocks = new List<TextLine>();
 
-        public TextBlock(int x, int y, int width, List<string> textList) : base(x, y, width, 0)
+        public TextBlock(int x, int y, int width, params string[] texts) : base(x, y, width, texts.Length)
         {
-            for (int i = 0; i < textList.Count; i++)
+            for (int i = 0; i < texts.Length; i++)
             {
-                _textBlocks.Add(new TextLine(x, y + i, width, textList[i]));
+                _textBlocks.Add(new TextLine(x, y + i, width, texts[i]));
             }
         }
 
         public override void Render()
         {
-            for (int i = 0; i < _textBlocks.Count; i++)
+            foreach (TextLine item in _textBlocks)
             {
-                _textBlocks[i].Render();
+                item.Render();
             }
         }
     }
