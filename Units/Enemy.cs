@@ -30,5 +30,20 @@ namespace ConsoleGame.Units
         {
             return _id;
         }
+
+        public int GetEnemyX()
+        {
+            return X;
+        }
+
+        public void MoveLeft()
+        {
+            X--;
+        }
+
+       public void MoveRight()
+        {
+            X++;
+        }
     }
 }

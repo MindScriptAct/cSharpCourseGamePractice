@@ -60,10 +60,12 @@ namespace ConsoleGame.Game
                             break;
                         case ConsoleKey.UpArrow:
                             myGame.MoveHeroUp();
+                            myGame.MoveAllEnemiesLeft();
                             needToRender = false;
                             break;
                         case ConsoleKey.DownArrow:
                             myGame.MoveHeroDown();
+                            myGame.MoveAllEnemiesRight();
                             needToRender = false;
                             break;
                     }

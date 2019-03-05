@@ -84,6 +84,16 @@ namespace ConsoleGame.Game
 
             }
         }
+        public void MoveAllEnemiesLeft()
+        {
+            foreach(Enemy enemy in _enemies)
+            {
+                if(enemy.GetEnemyX() > 0)
+                {
+                    enemy.MoveLeft();
+                }
+            }
+        }
         public Enemy GetEnemyByID(int id)
         {
             foreach (Enemy enemy in _enemies)
@@ -95,6 +105,18 @@ namespace ConsoleGame.Game
             }
             return null;
         }
+
+        public void MoveAllEnemiesRight()
+        {
+            foreach (Enemy enemy in _enemies)
+            {
+                if(enemy.GetEnemyX() < _width)
+                {
+                    enemy.MoveRight();
+                }
+            }
+        }
+
         public void Render()
         {
             Console.WriteLine("Don't step on enemy!");
