@@ -1,30 +1,22 @@
+using Game.Game;
+using Game.GUI;
+using Game.SpecialClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsoleGame.Game;
-using ConsoleGame.Gui;
 
-namespace ConsoleGame
+namespace Game
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-
             Console.CursorVisible = false;
 
-            GameWindow gameWindow = new GameWindow();
-            gameWindow.Render();
-
-            CreditWindow creditWindow = new CreditWindow();
-            creditWindow.Render();
-
-            Console.ReadKey();
-
-            //GameController myGame = new GameController();
-            //myGame.StartGame();
+            GuiController guiController = new GuiController();
+            guiController.ShowMenu();
         }
     }
 }

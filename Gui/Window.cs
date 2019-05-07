@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleGame.Gui
+namespace Game.GUI
 {
     class Window : GuiObject
     {
@@ -24,5 +24,6 @@ namespace ConsoleGame.Gui
         {
             _border.Render();
         }
+
     }
 }

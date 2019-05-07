@@ -4,31 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleGame.Gui
+namespace Game.GUI
 {
     class Button : GuiObject
     {
         public bool IsActive { get; private set; } = false;
 
-        public string Label {
+        public string Label
+        {
             get { return _textLine.Label; }
             set { _textLine.Label = value; }
         }
 
-        private string _label =  "";
+        //private string _label = "";
 
         private Frame _notActiveFrame;
         private Frame _activeFrame;
-
         private TextLine _textLine;
-
-
 
         public Button(int x, int y, int width, int height, string buttonText) : base(x, y, width, height)
         {
             _notActiveFrame = new Frame(x, y, width, height, '+');
             _activeFrame = new Frame(x, y, width, height, '#');
-
             _textLine = new TextLine(x + 1, y + 1 + ((height - 2) / 2), width - 2, buttonText);
         }
 
@@ -37,17 +34,22 @@ namespace ConsoleGame.Gui
             if (IsActive)
             {
                 _activeFrame.Render();
-            } else
+            }
+            else
             {
                 _notActiveFrame.Render();
             }
-
             _textLine.Render();
         }
 
         public void SetActive()
         {
             IsActive = true;
+        }
+
+        public void DeActive()
+        {
+            IsActive = false;
         }
     }
 }

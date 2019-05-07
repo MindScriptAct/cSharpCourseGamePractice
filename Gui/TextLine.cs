@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleGame.Gui
+namespace Game.GUI
 {
     class TextLine : GuiObject
     {
@@ -15,11 +15,14 @@ namespace ConsoleGame.Gui
             Label = label;
         }
 
-        public string Label {
-            get {
+        public string Label
+        {
+            get
+            {
                 return _label;
             }
-            set {
+            set
+            {
                 _label = value;
                 Render();
             }

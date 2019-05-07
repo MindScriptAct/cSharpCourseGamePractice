@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleGame.Gui
+namespace Game.GUI
 {
     class Frame : GuiObject
     {
@@ -15,9 +15,11 @@ namespace ConsoleGame.Gui
             RenderChar = renderChar;
         }
 
-        public char RenderChar {
+        public char RenderChar
+        {
             get { return _renderChar; }
-            set {
+            set
+            {
                 _renderChar = value;
                 Render();
             }
@@ -34,14 +36,14 @@ namespace ConsoleGame.Gui
                     {
                         Console.Write(RenderChar);
                     }
-                } else
+                }
+                else
                 {
                     Console.Write(RenderChar);
                     for (int j = 0; j < Width - 2; j++)
                     {
                         Console.Write(' ');
                     }
-
                     Console.Write(RenderChar);
                 }
             }

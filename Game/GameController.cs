@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsoleGame.Units;
 
-namespace ConsoleGame.Game
+namespace Game.Game
 {
     class GameController
     {
@@ -14,11 +13,8 @@ namespace ConsoleGame.Game
 
         public void StartGame()
         {
-
-            // init game
             InitGame();
 
-            // render loop
             StartGameLoop();
         }
 
@@ -26,7 +22,6 @@ namespace ConsoleGame.Game
         {
             myGame = new GameScreen(30, 20);
 
-            // fill game with game data.
             myGame.SetHero(new Hero(5, 5, "HERO"));
             Random rnd = new Random();
             int enemyCount = 0;
@@ -37,21 +32,16 @@ namespace ConsoleGame.Game
             }
         }
 
-
         private void StartGameLoop()
         {
             bool needToRender = true;
-
             do
             {
-                // isvalom ekrana
                 Console.Clear();
-
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo pressedChar = Console.ReadKey(true);
                     int hashCode = pressedChar.Key.GetHashCode();
-
                     switch (pressedChar.Key)
                     {
                         case ConsoleKey.Escape:
@@ -65,12 +55,16 @@ namespace ConsoleGame.Game
                             break;
                     }
                 }
-
                 myGame.Render();
-
-                // padarom pause. (parodom ekrana).
                 System.Threading.Thread.Sleep(250);
+
             } while (needToRender);
         }
+
+        private void Render()
+        {
+            Console.SetCursorPosition(20, 13);
+        }
+
     }
 }

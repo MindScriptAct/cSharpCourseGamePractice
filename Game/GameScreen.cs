@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ConsoleGame.Units;
 
-namespace ConsoleGame.Game
+namespace Game.Game
 {
     class GameScreen
     {
@@ -25,29 +24,18 @@ namespace ConsoleGame.Game
         {
             this._hero = hero;
         }
-
-
-        public void MoveHeroLeft()
-        {
-            if (_hero.GetX() > 0)
-            {
-                _hero.MoveLeft();
-            }
-        }
-
         public void MoveHeroRight()
         {
-            if (_hero.GetX() < _width)
-            {
-                _hero.MoveRight();
-            }
+            _hero.MoveRight();
         }
-
+        public void MoveHeroLeft()
+        {
+            _hero.MoveLeft();
+        }
         public void AddEnemy(Enemy enemy)
         {
             _enemies.Add(enemy);
         }
-
         public void MoveAllEnemiesDown()
         {
             foreach (Enemy enemy in _enemies)
@@ -55,7 +43,6 @@ namespace ConsoleGame.Game
                 enemy.MoveDown();
             }
         }
-
         public Enemy GetEnemyById(int id)
         {
             foreach (Enemy enemy in _enemies)
@@ -77,11 +64,6 @@ namespace ConsoleGame.Game
                 enemy.PrintInfo();
             }
         }
-
-
-
-
-
 
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleGame.Gui
+namespace Game.GUI
 {
     abstract class GuiObject
     {
@@ -12,7 +12,6 @@ namespace ConsoleGame.Gui
         public int Y { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-
         public GuiObject(int x, int y, int width, int height)
         {
             X = x;

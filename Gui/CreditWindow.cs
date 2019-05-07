@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleGame.Gui
+namespace Game.GUI
 {
     sealed class CreditWindow : Window
     {
@@ -18,16 +18,16 @@ namespace ConsoleGame.Gui
 
             creditData.Add("");
             creditData.Add("Game design:");
-            creditData.Add("Vardas Vardaitis");
+            creditData.Add("Gina Golubickiene");
             creditData.Add("");
             creditData.Add("Programuotojas:");
-            creditData.Add("Vardas Vardaitis");
+            creditData.Add("Gina Golubickiene");
             creditData.Add("");
             creditData.Add("\'Art\':");
-            creditData.Add("Vardas Vardaitis");
+            creditData.Add("Gina Golubickiene");
             creditData.Add("");
             creditData.Add("Marketingas:");
-            creditData.Add("Vardas Vardaitis");
+            creditData.Add("Gina Golubickiene");
             creditData.Add("");
 
             _creditTextBlock = new TextBlock(28 + 1, 10 + 1, 60 - 1, creditData);
